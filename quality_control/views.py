@@ -96,22 +96,22 @@ def add_task_to_project(request, project_id):
         form = TaskForm()
     return render(request, 'tasks/add_task.html', {'form': form, 'project': project})
 
-def add_bug(request, project_id):
-    project = get_object_or_404(Project, pk=project_id)
+def add_bug(request):
+
     if request.method == 'POST':
         form = BugReportForm(request.POST)
         if form.is_valid():
             bug = form.save(commit=False)
+
             bug.project = project
             bug.save()
-            return redirect('quality_control:bug_detail', project_id=project.id)
+            return redirect('quality_control:bug_detail.html')
     else:
         form = BugReportForm()
-    return render(request, 'quality_control/bug_report_form.html', {'form': form, 'project': project})
+    return render(request, 'quality_control/bug_report_form.html', {'form': form})
 
-def add_feature(request, project_id, task_id):
-    project = get_object_or_404(Project, pk=project_id)
-    task = get_object_or_404(Task, pk=task_id)
+def add_feature(request):
+
     if request.method == 'POST':
         form = FeatureRequestForm(request.POST)
         if form.is_valid():
@@ -119,7 +119,7 @@ def add_feature(request, project_id, task_id):
             feature.project = project
             feature.task = task
             feature.save()
-            return redirect('quality_control:feature_detail', project_id=project.id, task_id=task.id)
+            return redirect('quality_control:feature_detail')
     else:
         form = FeatureRequestForm()
-    return render(request, 'quality_control/feature_request_form.html', {'form': form, 'project': project})
+    return render(request, 'quality_control/feature_request_form.html', {'form': form})
