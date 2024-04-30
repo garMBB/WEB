@@ -1,11 +1,11 @@
 {% extends 'base/base.html' %}
 
 {% block content %}
-    <h1>{{ bug.title }}</h1>
-    <p>{{ bug.project }}</p>
-    <p>{{ bug.task }}</p>
-    <p>{{ bug.description }}</p>
-    <p>Статус бага - {{ bug.status }}</p>
-    <p>Приоритет бага - {{ bug.priority }}</p>
+    <h1>{{ bugreport.title }}</h1>
+    <p>{{ bugreport.project }}</p>
+    <p>{{ bugreport.task }}</p>
+    <p>{{ bugreport.description }}</p>
+    <p>Статус бага - {{ bugreport.status }}</p>
+    <p>Приоритет бага - {{ bugreport.priority }}</p>
 
 {% endblock %}
